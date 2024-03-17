@@ -1,15 +1,14 @@
 package org.example.libraryapp.controller.calculator;
 
+import org.example.libraryapp.dto.calculator.request.CalculatorAddRequest;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // api 진입 지점으로 생각하겠다. api는 controller로 들어오고, controller는 service로 들어간다.
 public class CalculatorController {
     @GetMapping("/add") // HTTP Method가 get 방식으로 http path가 /add인 API로 지정
     public int addTwoNumbers(
-            @RequestParam int number1, // request parameter로 number1을 받고
-            @RequestParam int number2) { // number1과 number2를 받아서
-        return number1 + number2; // a와 b를 더한 값을 반환한다.
+            CalculatorAddRequest request) {// CalculatorAddRequest 객체를 받아서 request라는 이름으로 사용하겠다.
+        return request.getNumber1() + request.getNumber2(); // 받은 request 객체의 number1과 number2를 더해서 반환
     }
 }
